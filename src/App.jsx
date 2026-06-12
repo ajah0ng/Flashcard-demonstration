@@ -1,6 +1,6 @@
 import { useState } from "react";
 import DeckDisplay from "./DeckDisplay";
-import DeckDashboard from "./DeckDashboard";
+import LecturesDashboard from "./LecturesDashboard";
 import "./index.css";
 
 function App() {
@@ -47,7 +47,7 @@ function App() {
         </div>
 
         <div id="display-bar">   
-          <DeckDashboard
+          <LecturesDashboard
             selectedModule={selectedModule}
             selectedDeck={selectedDeck}
             onSelectModule={setSelectedModule}
