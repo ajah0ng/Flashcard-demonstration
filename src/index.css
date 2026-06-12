@@ -1,0 +1,344 @@
+/* ========== GLOBAL ========== */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #f5f6fa;
+}
+
+/* ========== LAYOUT ========== */
+#layout {
+  display: flex;
+}
+
+/* ========== SIDEBAR ========== */
+#sidebar {
+  width: 200px;
+  height: 100vh;
+  background-color: #1f2937;
+  transition: width 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+#sidebar.close {
+  width: 50px;
+}
+
+/* Sidebar header */
+#sidebar-header {
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Toggle button */
+#toggle-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* Sidebar content */
+#sidebar-content {
+  padding: 10px;
+}
+
+/* ========== DECK LIST ========== */
+
+#decks-container {
+  margin-top: 10px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.deck-card-container {
+  color: #e5e7eb;
+}
+
+.deck-card-name {
+  background-color: #374151;
+
+  padding: 12px;
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  color: #e5e7eb;
+  font-size: 14px;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.deck-card-name:hover {
+  background-color: #4b5563;
+  transform: translateY(-2px);
+}
+
+.deck-card-name.active {
+  background-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3);
+
+  transform: translateY(-1px);
+}
+
+/* ========== MODULE DROPDOWN ========== */
+
+.deck-card-module-container {
+  display: grid;
+  grid-template-rows: 0fr;
+
+  transition: grid-template-rows 0.35s ease;
+}
+
+.deck-card-module-inner {
+  overflow: hidden;
+
+  padding-left: 10px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  opacity: 0;
+  transform: translateY(-6px);
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    padding-top 0.3s ease;
+}
+
+/* Open on hover OR click */
+
+.deck-card-container:hover .deck-card-module-container,
+.deck-card-module-container.open {
+  grid-template-rows: 1fr;
+}
+
+.deck-card-container:hover .deck-card-module-inner,
+.deck-card-module-container.open .deck-card-module-inner {
+  padding-top: 10px;
+
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========== MODULE CARDS ========== */
+
+.deck-card-module-name {
+  list-style: none;
+
+  background-color: #69778e;
+
+  padding: 12px;
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  color: #e5e7eb;
+  font-size: 13.5px;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.deck-card-module-name:hover {
+  background-color: #95a1b3;
+  transform: translateY(-1px);
+}
+
+/* ========== RIGHT SECTION ========== */
+#right-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top bar */
+#top-bar {
+  height: 60px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Create button */
+.create-btn {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+/* Display area */
+#display-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* ========== MODAL BOX ========== */
+.modal {
+  position: fixed;
+
+  background-color: #ffffff;
+  width: 360px;
+  padding: 25px;
+
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ========== CLOSE BUTTON ========== */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #6b7280;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #111827;
+}
+
+/* ========== LABELS ========== */
+.modal span {
+  font-size: 13px;
+  color: #374151;
+  margin-top: 8px;
+}
+
+/* ========== INPUTS ========== */
+.modal input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  outline: none;
+  font-size: 14px;
+  transition:
+    border 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.modal input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+/* ========== CREATE BUTTON ========== */
+.modal button {
+  margin-top: 15px;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+
+  background-color: #2563eb;
+  color: white;
+
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.modal button:hover {
+  background-color: #1d4ed8;
+}
+
+/* Deck Dashbaord */
+#deck-dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#deck-dashboard-container h1 {
+  padding: 80px;
+  font-size: 3em;
+}
+
+#modules-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dashboard-module-card {
+  background-color: white;
+
+  width: 1000px;
+  height: 50px;
+  padding: 20px;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-module-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.dashboard-module-card.active {
+  background-color: #2563eb;
+  color: white;
+}
+
+/* Dashboard */
+
+/* Edit Input */
+
+.module-edit-input {
+  border: 2px solid #4f46e5;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 16px;
+  outline: none;
+}
+
+.module-edit-input:focus {
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
+}
